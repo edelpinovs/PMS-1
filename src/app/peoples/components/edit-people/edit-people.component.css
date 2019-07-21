@@ -1,0 +1,15 @@
+.b-controls-container{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+.b-controls-container > * {
+    width: 100%;
+}
+
+.clearfix {
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 5px;
+}

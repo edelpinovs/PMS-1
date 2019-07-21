@@ -1,0 +1,41 @@
+<form [formGroup]="formEnviar" (ngSubmit)="onSubmit($event)">
+  <div class="b-controls-container">
+    <input type="hidden" formControlName="id" [(ngModel)]="people.id">
+
+    <h2 mat-dialog-title>{{title}}</h2>
+
+    <mat-form-field>
+      <input matInput placeholder="First Name" formControlName="firstName" [(ngModel)]="people.firstName">
+      <mat-error *ngIf="!formEnviar.get('firstName').valid && formEnviar.get('firstName').touched">Field First Name is invalid.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Last Name" formControlName="lastName" [(ngModel)]="people.lastName">
+      <mat-error *ngIf="!formEnviar.get('lastName').valid && formEnviar.get('lastName').touched">Field Last Name is invalid.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="number" min="1" placeholder="Age" formControlName="age" [(ngModel)]="people.age">
+      <mat-error *ngIf="!formEnviar.get('age').valid && formEnviar.get('age').touched">Field Age is invalid.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" [(ngModel)]="people.email">
+      <mat-error *ngIf="!formEnviar.get('email').valid && formEnviar.get('email').touched">Field Email is invalid.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Profession" formControlName="profession" [(ngModel)]="people.profession">
+      <mat-error *ngIf="!formEnviar.get('profession').valid && formEnviar.get('profession').touched">Field Profession is invalid.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="About Me" formControlName="aboutMe" [(ngModel)]="people.aboutMe" rows="5"></textarea>
+      <mat-error *ngIf="!formEnviar.get('aboutMe').valid && formEnviar.get('aboutMe').touched">Field About Me is invalid.</mat-error>
+    </mat-form-field>
+
+    <div class="clearfix">
+      <button mat-raised-button color="primary" [disabled]="(formEnviar.invalid)" style="float: right;">Save</button>
+    </div>
+  </div>
+</form>
