@@ -9,6 +9,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Add or Edit entire person object, was implemented an overlapping layer (with validated fields implemented).
 - Remove items.
 
+## Published
+
+You can access it and see it working at (<http://adminhudnu-001-site10.gtempurl.com/>)
+
 ## Also as general features
 
 - The view is fully responsive, from mobile to desktop.
