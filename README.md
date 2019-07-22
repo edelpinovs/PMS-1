@@ -11,7 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Published
 
-You can access it and see it working at (<http://adminhudnu-001-site10.gtempurl.com/>)
+You can access it and see it working at (<http://adminhudnu-001-site11.gtempurl.com/>)
 
 ## Also as general features
 
