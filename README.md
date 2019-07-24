@@ -24,6 +24,12 @@ You can access it and see it working at (<http://adminhudnu-001-site11.gtempurl.
 - Fluid and attractive experience for the user.
 - This system is online, accessible app and all sources downloadable.
 
+## Changes log
+
+- Add some properties editable inline
+    - First name
+    - Age 
+
 ## Other technical details
 
 ### Development server
