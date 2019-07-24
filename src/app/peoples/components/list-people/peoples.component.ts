@@ -4,6 +4,7 @@ import { PeopleService } from '../../services/people.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource, PageEvent, MatDialog } from '@angular/material';
 import { EditPeopleComponent } from '../edit-people/edit-people.component';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-bookmarks',
@@ -12,6 +13,11 @@ import { EditPeopleComponent } from '../edit-people/edit-people.component';
 })
 export class PeopleComponent implements OnInit {
   personas: Array<People>;
+  people: People;
+  formEnviar: FormGroup;
+  isViewVisualize: boolean = true;
+  idPeopleSelected: int;
+  columnToEdit: string;
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'age', 'email', 'profession', 'aboutMe', 'actions'];
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -34,6 +40,10 @@ export class PeopleComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.formEnviar = new FormGroup({
+      'firstName': new FormControl(null, Validators.required),
+      'age': new FormControl(null, Validators.required)
+    });
     this.refresh();
   }
 
@@ -57,8 +67,32 @@ export class PeopleComponent implements OnInit {
     this.gestPeople(new People());
   }
 
-  editPeople(people: People, event: Event) {
+  editPeopleInline(people: People, columnToEdit: string, event: Event) {
+    this.people = people;
+    this.idPeopleSelected = people.id;
+    this.isViewVisualize = false;
+    this.columnToEdit = columnToEdit;
+  }
+
+  editPeopleFull(people: People, event: Event) {
     this.gestPeople(people);
+  }
+
+  onSubmitSaveChanges(people: People, event: Event){
+    this.peopleService.update(this.people).subscribe(
+      (data: People) => {
+        this.isViewVisualize = false;
+        this.idPeopleSelected = -1;
+        this.refresh();
+      },
+      (err: HttpErrorResponse) => {
+        alert(err.error.message);
+      }
+    );
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault();
   }
 
   gestPeople(people: People) {
