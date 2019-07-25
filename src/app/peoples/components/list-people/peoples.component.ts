@@ -15,8 +15,8 @@ export class PeopleComponent implements OnInit {
   personas: Array<People>;
   people: People;
   formEnviar: FormGroup;
-  isViewVisualize: boolean = true;
-  idPeopleSelected: int;
+  isViewVisualized = true;
+  idPeopleSelected: number;
   columnToEdit: string;
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'age', 'email', 'profession', 'aboutMe', 'actions'];
   dataSource;
@@ -53,7 +53,6 @@ export class PeopleComponent implements OnInit {
       (response: People[]) => {
         this.personas = response;
         this.dataSource = new MatTableDataSource<People>(this.personas);
-
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
@@ -70,7 +69,7 @@ export class PeopleComponent implements OnInit {
   editPeopleInline(people: People, columnToEdit: string, event: Event) {
     this.people = people;
     this.idPeopleSelected = people.id;
-    this.isViewVisualize = false;
+    this.isViewVisualized = false;
     this.columnToEdit = columnToEdit;
   }
 
@@ -78,10 +77,10 @@ export class PeopleComponent implements OnInit {
     this.gestPeople(people);
   }
 
-  onSubmitSaveChanges(people: People, event: Event){
+  onSubmitSaveChanges(people: People, event: Event) {
     this.peopleService.update(this.people).subscribe(
       (data: People) => {
-        this.isViewVisualize = false;
+        this.isViewVisualized = false;
         this.idPeopleSelected = -1;
         this.refresh();
       },
@@ -89,6 +88,15 @@ export class PeopleComponent implements OnInit {
         alert(err.error.message);
       }
     );
+  }
+  
+  onSubmitUndoChanges(people: People, event: Event) {      
+    const result = confirm('Do you want to undo the changes?');
+    if (result) {
+      this.isViewVisualized = false;
+      this.idPeopleSelected = -1;
+      this.refresh();      
+    }
   }
 
   onSubmit(event: Event) {
