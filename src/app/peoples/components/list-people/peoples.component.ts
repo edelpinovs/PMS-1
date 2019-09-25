@@ -89,13 +89,13 @@ export class PeopleComponent implements OnInit {
       }
     );
   }
-  
-  onSubmitUndoChanges(people: People, event: Event) {      
+
+  onSubmitUndoChanges(people: People, event: Event) {
     const result = confirm('Do you want to undo the changes?');
     if (result) {
       this.isViewVisualized = false;
       this.idPeopleSelected = -1;
-      this.refresh();      
+      this.refresh();
     }
   }
 
